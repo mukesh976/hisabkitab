@@ -106,7 +106,7 @@
     },
     {
         "_id": "639b1ed051783326d6c03f22",
-        "item": "Chicken \ud83d\udc14",
+        "item": "Chicken",
         "category": "rasan",
         "price": "290",
         "date": "2022-12-15"
@@ -132,61 +132,893 @@
         "price": "10",
         "date": "2022-12-15"
     },
-    [
-        {
-            "_id": 20,
-            "item": "Vimbar",
-            "category": "daily use",
-            "price": "1000",
-            "date": "2022-12-30"
-        }
-    ],
-    [
-        {
-            "_id": 21,
-            "item": "Vimbar",
-            "category": "daily use",
-            "price": "1000",
-            "date": "2022-12-30"
-        }
-    ],
-    [
-        {
-            "_id": 22,
-            "item": "Vimbar",
-            "category": "daily use",
-            "price": "1000",
-            "date": "2022-12-30"
-        }
-    ],
-    [
-        {
-            "_id": 23,
-            "item": "Vimbar",
-            "category": "daily use",
-            "price": "1000",
-            "date": "2022-12-30"
-        }
-    ],
     {
-        "_id": 436576,
-        "item": "Vimbar",
+        "_id": "639c7a5e7bdc78c1fb63a58f",
+        "item": "Kobi ",
+        "category": "sabji",
+        "price": "40",
+        "date": "2022-12-16"
+    },
+    {
+        "_id": "639c7a6b1a63cdd9c499938d",
+        "item": "Maricha",
+        "category": "sabji",
+        "price": "10",
+        "date": "2022-12-16"
+    },
+    {
+        "_id": "639c7a767bdc78c1fb63a590",
+        "item": "Lahsun",
+        "category": "sabji",
+        "price": "10",
+        "date": "2022-12-16"
+    },
+    {
+        "_id": "639c7aaca5edc42cc6ddbe95",
+        "item": "Hara mator",
+        "category": "sabji",
+        "price": "20",
+        "date": "2022-12-16"
+    },
+    {
+        "_id": "639d53f83b5187063f7f3d46",
+        "item": "Rice ",
+        "category": "rasan",
+        "price": "72",
+        "date": "2022-12-16"
+    },
+    {
+        "_id": "639d5490a7aef1e55109b3a5",
+        "item": "Daal",
+        "category": "rasan",
+        "price": "220",
+        "date": "2022-12-16"
+    },
+    {
+        "_id": "639dca035c7713894cb09887",
+        "item": "Milk",
+        "category": "rasan",
+        "price": "26",
+        "date": "2022-12-17"
+    },
+    {
+        "_id": "639dca483c977bc249d01059",
+        "item": "Sugar",
+        "category": "rasan",
+        "price": "22",
+        "date": "2022-12-17"
+    },
+    {
+        "_id": "639eabf774f7030a3fa9988e",
+        "item": "Palak baigan",
+        "category": "sabji",
+        "price": "25",
+        "date": "2022-12-18"
+    },
+    {
+        "_id": "639eac175e189376943d04a4",
+        "item": "Hara mottor ",
+        "category": "sabji",
+        "price": "30",
+        "date": "2022-12-18"
+    },
+    {
+        "_id": "639ead2d5e189376943d04a5",
+        "item": "Alu",
+        "category": "sabji",
+        "price": "25",
+        "date": "2022-12-17"
+    },
+    {
+        "_id": "639eb4dc65bcd197fdbc7cdb",
+        "item": "Saraf",
         "category": "daily use",
-        "price": "1000",
+        "price": "37",
+        "date": "2022-12-18"
+    },
+    {
+        "_id": "639eb5cbfa67834a59fcbdd9",
+        "item": "Dahi",
+        "category": "rasan",
+        "price": "32",
+        "date": "2022-12-18"
+    },
+    {
+        "_id": "639eb5e865bcd197fdbc7cdc",
+        "item": "Tomato",
+        "category": "sabji",
+        "price": "10",
+        "date": "2022-12-18"
+    },
+    {
+        "_id": "639f00c7eb7da361bae8727c",
+        "item": "Pani",
+        "category": "daily use",
+        "price": "7",
+        "date": "2022-12-18"
+    },
+    {
+        "_id": "63a0564cbdddb3fc9ad86507",
+        "item": "Pyaj",
+        "category": "sabji",
+        "price": "60",
+        "date": "2022-12-18"
+    },
+    {
+        "_id": "63a0565b4e41570a20046f86",
+        "item": "Alu",
+        "category": "sabji",
+        "price": "60",
+        "date": "2022-12-18"
+    },
+    {
+        "_id": "63a0567ebdddb3fc9ad86508",
+        "item": "Topi",
+        "category": "others",
+        "price": "150",
+        "date": "2022-12-18"
+    },
+    {
+        "_id": "63a056f54e41570a20046f87",
+        "item": "Kohda",
+        "category": "sabji",
+        "price": "30",
+        "date": "2022-12-18"
+    },
+    {
+        "_id": "63a05703bdddb3fc9ad86509",
+        "item": "Lahsun",
+        "category": "sabji",
+        "price": "20",
+        "date": "2022-12-18"
+    },
+    {
+        "_id": "63a0571a4e41570a20046f88",
+        "item": "Gobhi ",
+        "category": "sabji",
+        "price": "30",
+        "date": "2022-12-18"
+    },
+    {
+        "_id": "63a05cd80c2d63973b15cd11",
+        "item": "Chawal",
+        "category": "rasan",
+        "price": "216",
+        "date": "2022-12-19"
+    },
+    {
+        "_id": "63a05d155731e259e6216c2d",
+        "item": "Namkin",
+        "category": "",
+        "price": "20",
+        "date": "2022-12-19"
+    },
+    {
+        "_id": "63a05d390c2d63973b15cd12",
+        "item": "Maida ",
+        "category": "",
+        "price": "80",
+        "date": "2022-12-19"
+    },
+    {
+        "_id": "63a05d4f5731e259e6216c2e",
+        "item": "Dudh",
+        "category": "daily use",
+        "price": "26",
+        "date": "2022-12-19"
+    },
+    {
+        "_id": "63a05da35731e259e6216c2f",
+        "item": "Rifine",
+        "category": "rasan",
+        "price": "160",
+        "date": "2022-12-19"
+    },
+    {
+        "_id": "63a05ebd0c2d63973b15cd13",
+        "item": "Burgur",
+        "category": "daily use",
+        "price": "20",
+        "date": "2022-12-19"
+    },
+    {
+        "_id": "63a1435cb58b0d179170dc55",
+        "item": "Milk",
+        "category": "rasan",
+        "price": "26",
+        "date": "2022-12-20"
+    },
+    {
+        "_id": "63a1aa684de36acb7ffb3ca6",
+        "item": "Oil",
+        "category": "rasan",
+        "price": "24",
+        "date": "2022-12-19"
+    },
+    {
+        "_id": "63a1aab9cee25f68524633b9",
+        "item": "Dawa",
+        "category": "",
+        "price": "30",
+        "date": "2022-12-19"
+    },
+    {
+        "_id": "63a1aad94de36acb7ffb3ca7",
+        "item": "Maricha jira",
+        "category": "rasan",
+        "price": "30",
+        "date": "2022-12-19"
+    },
+    {
+        "_id": "63a1ab0bcee25f68524633ba",
+        "item": "Sag",
+        "category": "sabji",
+        "price": "30",
+        "date": "2022-12-19"
+    },
+    {
+        "_id": "63a1ab894de36acb7ffb3ca8",
+        "item": "Baigan",
+        "category": "sabji",
+        "price": "30",
+        "date": "2022-12-19"
+    },
+    {
+        "_id": "63a1ab96cee25f68524633bb",
+        "item": "Oil",
+        "category": "rasan",
+        "price": "200",
+        "date": "2022-12-19"
+    },
+    {
+        "_id": "63a1aca44de36acb7ffb3caa",
+        "item": "Kobi",
+        "category": "sabji",
+        "price": "30",
+        "date": "2022-12-19"
+    },
+    {
+        "_id": "63a1ad69cee25f68524633bc",
+        "item": "Dhniya",
+        "category": "sabji",
+        "price": "10",
+        "date": "2022-12-19"
+    },
+    {
+        "_id": "63a1bea3a1b03c272bdea42a",
+        "item": "Milk",
+        "category": "rasan",
+        "price": "26",
+        "date": "2022-12-20"
+    },
+    {
+        "_id": "63a309232e2f410f1483c8a3",
+        "item": "Sabji",
+        "category": "sabji",
+        "price": "100",
+        "date": "2022-12-19"
+    },
+    {
+        "_id": "63a44c59ecf14013bd95381d",
+        "item": "Adarak",
+        "category": "sabji",
+        "price": "10",
+        "date": "2022-12-22"
+    },
+    {
+        "_id": "63a44c937b08a6e013a7d27f",
+        "item": "Kali mirch",
+        "category": "rasan",
+        "price": "5",
+        "date": "2022-12-22"
+    },
+    {
+        "_id": "63a458635721e07a7dc7b88f",
+        "item": "Alu",
+        "category": "sabji",
+        "price": "50",
+        "date": "2022-12-22"
+    },
+    {
+        "_id": "63a458824545fd64a6362406",
+        "item": "Marija ",
+        "category": "sabji",
+        "price": "10",
+        "date": "2022-12-22"
+    },
+    {
+        "_id": "63a4593d5721e07a7dc7b890",
+        "item": "Tamatar",
+        "category": "sabji",
+        "price": "10",
+        "date": "2022-12-22"
+    },
+    {
+        "_id": "63a4594a4545fd64a6362407",
+        "item": "Nibu ",
+        "category": "sabji",
+        "price": "5",
+        "date": "2022-12-22"
+    },
+    {
+        "_id": "63a459884545fd64a6362408",
+        "item": "Sukha mircha",
+        "category": "rasan",
+        "price": "15",
+        "date": "2022-12-22"
+    },
+    {
+        "_id": "63a459995721e07a7dc7b891",
+        "item": "Rifin",
+        "category": "rasan",
+        "price": "148",
+        "date": "2022-12-22"
+    },
+    {
+        "_id": "63a459a44545fd64a6362409",
+        "item": "Chaipati",
+        "category": "rasan",
+        "price": "75",
+        "date": "2022-12-22"
+    },
+    {
+        "_id": "63a459ac5721e07a7dc7b892",
+        "item": "Masala ",
+        "category": "rasan",
+        "price": "60",
+        "date": "2022-12-22"
+    },
+    {
+        "_id": "63a459b74545fd64a636240a",
+        "item": "Chiwura",
+        "category": "rasan",
+        "price": "46",
+        "date": "2022-12-22"
+    },
+    {
+        "_id": "63a459c15721e07a7dc7b893",
+        "item": "Chini",
+        "category": "rasan",
+        "price": "48",
+        "date": "2022-12-22"
+    },
+    {
+        "_id": "63a459ea4545fd64a636240b",
+        "item": "Suji",
+        "category": "rasan",
+        "price": "40",
+        "date": "2022-12-22"
+    },
+    {
+        "_id": "63a45a375721e07a7dc7b894",
+        "item": "Anda",
+        "category": "sabji",
+        "price": "98",
+        "date": "2022-12-22"
+    },
+    {
+        "_id": "63a5aca9fe3fec739792fa7f",
+        "item": "Govi",
+        "category": "sabji",
+        "price": "30",
+        "date": "2022-12-23"
+    },
+    {
+        "_id": "63a5acb7204aa613a999814c",
+        "item": "Pyaj",
+        "category": "sabji",
+        "price": "25",
+        "date": "2022-12-23"
+    },
+    {
+        "_id": "63a5acf7fe3fec739792fa80",
+        "item": "Baigan",
+        "category": "sabji",
+        "price": "10",
+        "date": "2022-12-23"
+    },
+    {
+        "_id": "63a5ad06fe3fec739792fa81",
+        "item": "Nibu ",
+        "category": "sabji",
+        "price": "5",
+        "date": "2022-12-23"
+    },
+    {
+        "_id": "63a5ad2c204aa613a999814d",
+        "item": "Anda",
+        "category": "sabji",
+        "price": "14",
+        "date": "2022-12-23"
+    },
+    {
+        "_id": "63a5ad3efe3fec739792fa82",
+        "item": "Namkin",
+        "category": "daily use",
+        "price": "10",
+        "date": "2022-12-23"
+    },
+    {
+        "_id": "63a72c48f70974e8c0f2cc72",
+        "item": "Rent agriment",
+        "category": "",
+        "price": "300",
+        "date": "2022-12-24"
+    },
+    {
+        "_id": "63a7e721ed56a54f3efbffa7",
+        "item": "Milk",
+        "category": "rasan",
+        "price": "26",
+        "date": "2022-12-25"
+    },
+    {
+        "_id": "63a7f2a067aeab87efb85a54",
+        "item": "Til oil",
+        "category": "daily use",
+        "price": "60",
+        "date": "2022-12-25"
+    },
+    {
+        "_id": "63a7f2b9a739626d07341f88",
+        "item": "Egg",
+        "category": "sabji",
+        "price": "7",
+        "date": "2022-12-25"
+    },
+    {
+        "_id": "63a845051c61b2ea01b1c5b5",
+        "item": "Gobhi",
+        "category": "sabji",
+        "price": "20",
+        "date": "2022-12-25"
+    },
+    {
+        "_id": "63a845158380369a654a7e67",
+        "item": "Pyaj",
+        "category": "sabji",
+        "price": "25",
+        "date": "2022-12-25"
+    },
+    {
+        "_id": "63a845281c61b2ea01b1c5b6",
+        "item": "Alu",
+        "category": "sabji",
+        "price": "20",
+        "date": "2022-12-25"
+    },
+    {
+        "_id": "63a845381c61b2ea01b1c5b7",
+        "item": "Tamatar",
+        "category": "sabji",
+        "price": "5",
+        "date": "2022-12-25"
+    },
+    {
+        "_id": "63a8454a1c61b2ea01b1c5b8",
+        "item": "Maricha",
+        "category": "sabji",
+        "price": "10",
+        "date": "2022-12-25"
+    },
+    {
+        "_id": "63a845611c61b2ea01b1c5b9",
+        "item": "Agarbadi",
+        "category": "daily use",
+        "price": "15",
+        "date": "2022-12-25"
+    },
+    {
+        "_id": "63a8456d8380369a654a7e68",
+        "item": "Bisket",
+        "category": "daily use",
+        "price": "5",
+        "date": "2022-12-25"
+    },
+    {
+        "_id": "63a8457d1c61b2ea01b1c5ba",
+        "item": "Khawashota",
+        "category": "sabji",
+        "price": "5",
+        "date": "2022-12-25"
+    },
+    {
+        "_id": "63a91551cada407007e187ff",
+        "item": "Rice",
+        "category": "rasan",
+        "price": "200",
+        "date": "2022-12-25"
+    },
+    {
+        "_id": "63a91574f00a8bb00821a994",
+        "item": "Dal",
+        "category": "rasan",
+        "price": "230",
+        "date": "2022-12-25"
+    },
+    {
+        "_id": "63a915c1cada407007e18800",
+        "item": "Chana ke dal",
+        "category": "rasan",
+        "price": "40",
+        "date": "2022-12-25"
+    },
+    {
+        "_id": "63a91605f00a8bb00821a995",
+        "item": "Bisket",
+        "category": "daily use",
+        "price": "10",
+        "date": "2022-12-25"
+    },
+    {
+        "_id": "63a916bdf00a8bb00821a996",
+        "item": "Dhodha",
+        "category": "",
+        "price": "25",
+        "date": "2022-12-25"
+    },
+    {
+        "_id": "63aaefcea116428ac35a273d",
+        "item": "Jira pawder",
+        "category": "rasan",
+        "price": "30",
+        "date": "2022-12-27"
+    },
+    {
+        "_id": "63aaefef6a25744f43250fda",
+        "item": "Dhaniya ",
+        "category": "rasan",
+        "price": "22",
+        "date": "2022-12-27"
+    },
+    {
+        "_id": "63aaf000a116428ac35a273e",
+        "item": "Meat masala",
+        "category": "rasan",
+        "price": "43",
+        "date": "2022-12-27"
+    },
+    {
+        "_id": "63aaf00f6a25744f43250fdb",
+        "item": "Puaj",
+        "category": "sabji",
+        "price": "50",
+        "date": "2022-12-27"
+    },
+    {
+        "_id": "63aaf0236a25744f43250fdc",
+        "item": "Kobi ",
+        "category": "",
+        "price": "20",
+        "date": "2022-12-27"
+    },
+    {
+        "_id": "63aaf035a116428ac35a273f",
+        "item": "Meat ",
+        "category": "sabji",
+        "price": "270",
+        "date": "2022-12-27"
+    },
+    {
+        "_id": "63aaf07ca116428ac35a2740",
+        "item": "Chini ",
+        "category": "rasan",
+        "price": "48",
+        "date": "2022-12-27"
+    },
+    {
+        "_id": "63aafb105a1c9e5e9254779f",
+        "item": "Ata ",
+        "category": "rasan",
+        "price": "35",
+        "date": "2022-12-27"
+    },
+    {
+        "_id": "63aafb2282c70d06e0533eeb",
+        "item": "Pani ",
+        "category": "daily use",
+        "price": "7",
+        "date": "2022-12-27"
+    },
+    {
+        "_id": "63aafcf35a1c9e5e925477a0",
+        "item": "Namik",
+        "category": "daily use",
+        "price": "5",
+        "date": "2022-12-27"
+    },
+    {
+        "_id": "63abe22d3692a423c3453b5a",
+        "item": "Cycle oil",
+        "category": "daily use",
+        "price": "30",
+        "date": "2022-12-27"
+    },
+    {
+        "_id": "63abe53a3d2058de52e57ef6",
+        "item": "Dudh",
+        "category": "daily use",
+        "price": "52",
+        "date": "2022-12-28"
+    },
+    {
+        "_id": "63ad279cba2b894593122124",
+        "item": "Kobi ",
+        "category": "sabji",
+        "price": "40",
+        "date": "2022-12-29"
+    },
+    {
+        "_id": "63ad27aeba2b894593122125",
+        "item": "Nibu ",
+        "category": "sabji",
+        "price": "10",
+        "date": "2022-12-29"
+    },
+    {
+        "_id": "63ad27bc8c546a42bc9d8ed5",
+        "item": "Maida ",
+        "category": "rasan",
+        "price": "36",
+        "date": "2022-12-29"
+    },
+    {
+        "_id": "63ad2801ba2b894593122126",
+        "item": "Mircha powder",
+        "category": "sabji",
+        "price": "5",
+        "date": "2022-12-29"
+    },
+    {
+        "_id": "63ad28358c546a42bc9d8ed6",
+        "item": "Black salt",
+        "category": "rasan",
+        "price": "5",
+        "date": "2022-12-29"
+    },
+    {
+        "_id": "63ad287cba2b894593122127",
+        "item": "Chocolate ",
+        "category": "",
+        "price": "10",
+        "date": "2022-12-29"
+    },
+    {
+        "_id": "63ad28908c546a42bc9d8ed7",
+        "item": "Dahi",
+        "category": "daily use",
+        "price": "32",
+        "date": "2022-12-29"
+    },
+    {
+        "_id": "63ad2c27d23f4e33a9fc4e88",
+        "item": "Potato",
+        "category": "sabji",
+        "price": "34",
+        "date": "2022-12-29"
+    },
+    {
+        "_id": "63ad971fcdc3d22479e284d8",
+        "item": "Rice",
+        "category": "rasan",
+        "price": "200",
+        "date": "2022-12-29"
+    },
+    {
+        "_id": "63ad9732cdc3d22479e284d9",
+        "item": "Alu",
+        "category": "sabji",
+        "price": "50",
+        "date": "2022-12-29"
+    },
+    {
+        "_id": "63ad9750cdc3d22479e284da",
+        "item": "Eno",
+        "category": "",
+        "price": "18",
+        "date": "2022-12-29"
+    },
+    {
+        "_id": "63ae88ba9e3d4275f76031fc",
+        "item": "Dahi",
+        "category": "rasan",
+        "price": "32",
         "date": "2022-12-30"
     },
     {
-        "_id": 436576,
-        "item": "Vimbar",
-        "category": "daily use",
-        "price": "1000",
+        "_id": "63ae88dab23a872ec5a4c690",
+        "item": "Milk",
+        "category": "rasan",
+        "price": "26",
         "date": "2022-12-30"
     },
     {
-        "_id": 436576,
-        "item": "Vimbar",
+        "_id": "63ae88f1b23a872ec5a4c691",
+        "item": "Sarf",
         "category": "daily use",
-        "price": "1000",
+        "price": "73",
         "date": "2022-12-30"
+    },
+    {
+        "_id": "63ae98e0987ea59488959327",
+        "item": "Milk",
+        "category": "daily use",
+        "price": "26",
+        "date": "2022-12-30"
+    },
+    {
+        "_id": "63ae98fa987ea59488959328",
+        "item": "Rifine",
+        "category": "rasan",
+        "price": "105",
+        "date": "2022-12-30"
+    },
+    {
+        "_id": "63ae992ce2941d7b209fe0e2",
+        "item": "Krishna",
+        "category": "others",
+        "price": "30",
+        "date": "2022-12-29"
+    },
+    {
+        "_id": "63ae9950e2941d7b209fe0e3",
+        "item": "Vivek hair cut",
+        "category": "others",
+        "price": "50",
+        "date": "2022-12-30"
+    },
+    {
+        "_id": "63af0feda195736803311f84",
+        "item": "Sarso oil",
+        "category": "rasan",
+        "price": "170",
+        "date": "2022-12-30"
+    },
+    {
+        "_id": "63af1001a195736803311f85",
+        "item": "Aata",
+        "category": "rasan",
+        "price": "34",
+        "date": "2022-12-30"
+    },
+    {
+        "_id": "63af101fa195736803311f86",
+        "item": "Dhaniya ",
+        "category": "sabji",
+        "price": "10",
+        "date": "2022-12-30"
+    },
+    {
+        "_id": "63af1033a195736803311f87",
+        "item": "Jira",
+        "category": "sabji",
+        "price": "16",
+        "date": "2022-12-30"
+    },
+    {
+        "_id": "63af1053a195736803311f88",
+        "item": "Namak",
+        "category": "rasan",
+        "price": "27",
+        "date": "2022-12-30"
+    },
+    {
+        "_id": "63af10a9a195736803311f89",
+        "item": "Lahasun ",
+        "category": "sabji",
+        "price": "30",
+        "date": "2022-12-30"
+    },
+    {
+        "_id": "63af10e0a195736803311f8a",
+        "item": "Besan ",
+        "category": "rasan",
+        "price": "45",
+        "date": "2022-12-30"
+    },
+    {
+        "_id": "63af1121f8d82012465470a3",
+        "item": "File page",
+        "category": "",
+        "price": "30",
+        "date": "2022-12-30"
+    },
+    {
+        "_id": "63b047f92089375e55ed9bdf",
+        "item": "Pani",
+        "category": "daily use",
+        "price": "7",
+        "date": "2022-12-31"
+    },
+    {
+        "_id": "63b048042089375e55ed9be0",
+        "item": "Anda ",
+        "category": "sabji",
+        "price": "35",
+        "date": "2022-12-31"
+    },
+    {
+        "_id": "63b048959013e913e9c9f73d",
+        "item": "Ata",
+        "category": "rasan",
+        "price": "34",
+        "date": "2022-12-31"
+    },
+    {
+        "_id": "63b048e89013e913e9c9f73e",
+        "item": "Bisket ",
+        "category": "daily use",
+        "price": "10",
+        "date": "2022-12-29"
+    },
+    {
+        "_id": "63b3144972c3dd6a939de842",
+        "item": "Egg",
+        "category": "sabji",
+        "price": "14",
+        "date": "2023-01-02"
+    },
+    {
+        "_id": "63b3146b72c3dd6a939de843",
+        "item": "Potato",
+        "category": "sabji",
+        "price": "60",
+        "date": "2023-01-02"
+    },
+    {
+        "_id": "63b31487a88a24993a8a4135",
+        "item": "Onion",
+        "category": "sabji",
+        "price": "70",
+        "date": "2023-01-02"
+    },
+    {
+        "_id": "63b314bd72c3dd6a939de844",
+        "item": "Milk",
+        "category": "daily use",
+        "price": "64",
+        "date": "2023-01-02"
+    },
+    {
+        "_id": "63b314cfa88a24993a8a4136",
+        "item": "Bread",
+        "category": "daily use",
+        "price": "12",
+        "date": "2023-01-02"
+    },
+    {
+        "_id": "63b314f372c3dd6a939de845",
+        "item": "Tomato",
+        "category": "sabji",
+        "price": "10",
+        "date": "2023-01-02"
+    },
+    {
+        "_id": "63b3150661b55fd9067afe04",
+        "item": "Bins",
+        "category": "sabji",
+        "price": "30",
+        "date": "2023-01-02"
+    },
+    {
+        "_id": "63b31525a88a24993a8a4137",
+        "item": "Paneer",
+        "category": "sabji",
+        "price": "80",
+        "date": "2023-01-02"
+    },
+    {
+        "_id": "63b3f3e40009fff98189591b",
+        "item": "Milk",
+        "category": "daily use",
+        "price": "32",
+        "date": "2023-01-03"
+    },
+    {
+        "_id": "63b3f7828fa6ca5f3dcfa42e",
+        "item": "Medicine",
+        "category": "",
+        "price": "15",
+        "date": "2023-01-03"
     }
 ]

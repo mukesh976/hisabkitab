@@ -34,9 +34,10 @@ def overview(request):
     client,db = connect_mongo()
     collection = db['items']
 
-    all_items=collection.find({},{'_id':0})
+    all_items=collection.find()
     data=list()
     for item in all_items:
+        item['_id']= str(item['_id'])
         data.append(item)
 
     client.close()
@@ -61,9 +62,8 @@ def overview(request):
 
 @api_view(['GET'])
 def category_data(request):
-    client=MongoClient('mongodb+srv://test_db_user:wy1d3VNenoBmkfx5@cluster0.ohz7z5a.mongodb.net/?retryWrites=true&w=majority')
-    db=client['test']
-    collection=db['items']
+    client,db = connect_mongo()
+    collection = db['items']
 
     al_items=collection.find({},{'_id':0})
     catg_data = dict()
@@ -72,21 +72,22 @@ def category_data(request):
             [catg_data[item['category']]].append(item)
         else:
             catg_data[item['category']]=(item)
+    client.close()        
     return Response(catg_data)            
 
 
 @api_view(['GET'])
 def date_wise_data(request):
     date = request.GET.get('date')
-    client=MongoClient('mongodb+srv://test_db_user:wy1d3VNenoBmkfx5@cluster0.ohz7z5a.mongodb.net/?retryWrites=true&w=majority')
-    db=client['test']
-    collection=db['items']
+    client,db = connect_mongo()
+    collection = db['items']
 
     all_items=collection.find({},{'_id':0})
     date_data = list()
     for item in all_items:
         if item['date']==date:
             date_data.append(item)
+    client.close()        
     return Response(date_data)        
 
 
@@ -106,15 +107,15 @@ def date_wise_data(request):
 @api_view(['GET'])
 def date_catg_wise_data(request):
     date, catg = request.GET.get('date'), request.GET.get('catg')
-    client=MongoClient('mongodb+srv://test_db_user:wy1d3VNenoBmkfx5@cluster0.ohz7z5a.mongodb.net/?retryWrites=true&w=majority')
-    db=client['test']
-    collection=db['items']
+    client,db = connect_mongo()
+    collection = db['items']
 
     all_items=collection.find({},{'_id':0})
     date_catg_data = list()
     for item in all_items:
         if item['date'] == date and item['category'] == catg:
             date_catg_data.append(item)
+    client.close()        
     return Response(date_catg_data)         
 
 
@@ -148,9 +149,8 @@ def add_new_item(request):
 
 @api_view(['POST'])
 def add_item(request):
-    client=MongoClient('mongodb+srv://test_db_user:wy1d3VNenoBmkfx5@cluster0.ohz7z5a.mongodb.net/?retryWrites=true&w=majority')
-    db=client['test']
-    collection=db['items']
+    client,db = connect_mongo()
+    collection = db['items']
 
     new_item = request.data['item']
     #print(new_item,"before adding to mongo")
@@ -159,28 +159,30 @@ def add_item(request):
     #print(new_item,"after adding mongo")
 
     new_item["_id"]=str(new_item["_id"])
+    client.close() 
     return Response({'added_item':new_item})
 
 
 
 @api_view(['PATCH'])
 def update_item(request):
-    data = read_data_from_json()
-    idx,upd_name = request.data['idx'],request.data['name']
 
-    item = data[idx]
-    item['item'] = upd_name
+    client,db = connect_mongo()
+    collection = db['items']
 
-    with open('overview/static/itemsdata.json', 'w') as f:
-        f.write(json.dumps(data))
-    return Response(data[idx])
-       
+    update_item= request.data['update_item']
+    filter={"_id":str(update_item['_id'])}
+    update = {"$set": update_item}
+    result=collection.update_one(filter,update)
+   # print("update_item=",update_item,"filter=",filter,"update=",update,"result=",result)
+    client.close()
+    return Response(result) 
+
 
 @api_view(['GET']) # Date ke item ka maximum price.
 def date_max_itm_price(request):
-    client=MongoClient('mongodb+srv://test_db_user:wy1d3VNenoBmkfx5@cluster0.ohz7z5a.mongodb.net/?retryWrites=true&w=majority')
-    db=client['test']
-    collection=db['items']
+    client,db = connect_mongo()
+    collection = db['items']
 
     all_items=collection.find({},{'_id':0})
     max=0
@@ -190,14 +192,14 @@ def date_max_itm_price(request):
         if item['date']==date and int(item['price'])>max:
             max=int(item['price'])
             itm=item['item']
+    client.close()        
     return Response({'item':itm,'Maximum_Price':max})
 
 
 @api_view(['GET']) #Count item and price
 def count_itm(request):
-    client=MongoClient('mongodb+srv://test_db_user:wy1d3VNenoBmkfx5@cluster0.ohz7z5a.mongodb.net/?retryWrites=true&w=majority')
-    db=client['test']
-    collection=db['items']
+    client,db = connect_mongo()
+    collection = db['items']
 
     all_items=collection.find({},{'_id':0})
     count_dict=dict()
@@ -206,14 +208,14 @@ def count_itm(request):
             count_dict[item['item']]['count']+=1
             count_dict[item['item']]['price']+=int(item['price'])
         else:
-            count_dict[item['item']]={'count':1,'price':int(item['price'])}    
+            count_dict[item['item']]={'count':1,'price':int(item['price'])}
+    client.close()             
     return Response(count_dict)
                                    
 @api_view(['GET']) #Count item_price and latest_date
 def cunt_itm_latest_date(request):
-    client=MongoClient('mongodb+srv://test_db_user:wy1d3VNenoBmkfx5@cluster0.ohz7z5a.mongodb.net/?retryWrites=true&w=majority')
-    db=client['test']
-    collection=db['items']
+    client,db = connect_mongo()
+    collection = db['items']
 
     all_items=collection.find({},{'_id':0})
     latest_date=dict()
@@ -226,46 +228,28 @@ def cunt_itm_latest_date(request):
         else:
             latest_date[item['item']]={'count':1,'price':int(item['price']),
                                         'date':item['date']}
+    client.close()                                    
     return Response(latest_date)                                                                               
 
 
 @api_view(['GET']) # latest_date and item
 def latest_date(request):
-    client=MongoClient('mongodb+srv://test_db_user:wy1d3VNenoBmkfx5@cluster0.ohz7z5a.mongodb.net/?retryWrites=true&w=majority')
-    db=client['test']
-    collection=db['items']
+    client,db = connect_mongo()
+    collection = db['items']
 
     all_items=collection.find({},{'_id':0})
     for item in all_items:
         if item['date']<=dt.strftime(dt.today(),'%Y-%m-%d'):
             l_d={item['date']:[{'item':item['item'],'price':item['price']}]}
+    client.close()        
     return Response(l_d)
-
-
-# @api_view(['GET']) #Particular_date_data
-# def Particular_date_data(request):
-#     date = request.GET.get('date')
-#     data = read_data_from_json()
-#     parti_det=dict()
-#     for item in data:
-#         if item['date']==date:
-#             if item['date'] in parti_det:
-#                 parti_det[item['date']]['item'].append([item['item']])
-#                 parti_det[item['date']]['total_item']+=1
-#                 parti_det[item['date']]['total_price']+=int(item['price'])
-#             else:
-#                 parti_det[item['date']]={'total_item':1,
-#                                          'total_price':int(item['price']),
-#                                         'item':[item['item']],}  
-#     return Response(parti_det)                                       
-
+                                      
 
 @api_view(['GET']) #Particular_date_data
 def Particular_date_data(request):
     date = request.GET.get('date')
-    client=MongoClient('mongodb+srv://test_db_user:wy1d3VNenoBmkfx5@cluster0.ohz7z5a.mongodb.net/?retryWrites=true&w=majority')
-    db=client['test']
-    collection=db['items']
+    client,db = connect_mongo()
+    collection = db['items']
 
     all_items=collection.find({},{'_id':0})
     parti_det=dict()
@@ -279,4 +263,7 @@ def Particular_date_data(request):
                 parti_det[item['date']]={'total_item':1,
                                           'total_price':int(item['price']),
                                          'item':[item['item']],}
+    client.close()                                     
     return Response(parti_det)                                         
+
+

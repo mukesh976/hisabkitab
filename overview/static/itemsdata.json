@@ -1,25 +1,4 @@
-[
-    {
-        "_id": "6398b26a6bc24c99aab55e3d",
-        "item": "Sarso oil",
-        "category": "rasan",
-        "price": "160",
-        "date": "2022-12-13"
-    },
-    {
-        "_id": "6398b44e81d5e9d3a0a5a195",
-        "item": "Toothpaste ",
-        "category": "daily use",
-        "price": "50",
-        "date": "2022-12-13"
-    },
-    {
-        "_id": "6398b4a06bc24c99aab55e3e",
-        "item": "Til oil",
-        "category": "daily use",
-        "price": "65",
-        "date": "2022-12-13"
-    },
+
     {
         "_id": "6398c5fc65839ae7f5f90122",
         "item": "Vimbar",
@@ -61,6 +40,27 @@
         "category": "daily use",
         "price": "7",
         "date": "2022-12-14"
+    },[
+    {
+        "_id": "6398b26a6bc24c99aab55e3d",
+        "item": "Sarso oil",
+        "category": "rasan",
+        "price": "160",
+        "date": "2022-12-13"
+    },
+    {
+        "_id": "6398b44e81d5e9d3a0a5a195",
+        "item": "Toothpaste ",
+        "category": "daily use",
+        "price": "50",
+        "date": "2022-12-13"
+    },
+    {
+        "_id": "6398b4a06bc24c99aab55e3e",
+        "item": "Til oil",
+        "category": "daily use",
+        "price": "65",
+        "date": "2022-12-13"
     },
     {
         "_id": "6399ca66978b03da2d251708",
@@ -1015,6 +1015,7 @@
         "date": "2023-01-03"
     },
     {
+    
         "_id": "63b3f7828fa6ca5f3dcfa42e",
         "item": "Medicine",
         "category": "",

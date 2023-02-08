@@ -6,6 +6,8 @@ from rest_framework.response import Response
 import json
 from datetime import datetime as dt
 from pymongo import MongoClient
+from bson import ObjectId
+
 
 # Create your views here.
 
@@ -15,12 +17,6 @@ def read_data_from_json(dpath='overview/static/itemsdata.json'):
         data = json.load(f)
     return data
 
-
-# @api_view(['GET'])
-# def overview(request):
-#     data = read_data_from_json()
-
-#     return Response(data)
 
 def connect_mongo(db_name='test'):
     client=MongoClient('mongodb+srv://test_db_user:wy1d3VNenoBmkfx5@cluster0.ohz7z5a.mongodb.net/?retryWrites=true&w=majority')
@@ -44,30 +40,15 @@ def overview(request):
     return Response(data)    
 
 
-
-# @api_view(['GET'])
-# def category_data(request):
-#     data = read_data_from_json()
-
-#     catg_data = dict()
-#     for item in data:
-#         if item['category'] in catg_data:
-#             catg_data[item['category']].append(item)
-#         else:
-
-#             catg_data[item['category']] = [item]
-
-#     return Response(catg_data)
-
-
 @api_view(['GET'])
 def category_data(request):
     client,db = connect_mongo()
     collection = db['items']
 
-    al_items=collection.find({},{'_id':0})
+    all_items=collection.find()
     catg_data = dict()
-    for item in al_items:
+    for item in all_items:
+        item['_id']= str(item['_id'])
         if item['category'] in catg_data:
             [catg_data[item['category']]].append(item)
         else:
@@ -82,26 +63,14 @@ def date_wise_data(request):
     client,db = connect_mongo()
     collection = db['items']
 
-    all_items=collection.find({},{'_id':0})
+    all_items=collection.find()
     date_data = list()
     for item in all_items:
+        item['_id']= str(item['_id'])
         if item['date']==date:
             date_data.append(item)
     client.close()        
-    return Response(date_data)        
-
-
-# @api_view(['GET'])
-# def date_catg_wise_data(request):
-#     date, catg = request.GET.get('date'), request.GET.get('catg')
-
-#     data = read_data_from_json()
-#     date_data = list()
-#     for item in data:
-#         if item['date'] == date and item['category'] == catg:
-#             date_data.append(item)
-
-#     return Response(date_data)
+    return Response((date_data))        
 
 
 @api_view(['GET'])
@@ -110,16 +79,14 @@ def date_catg_wise_data(request):
     client,db = connect_mongo()
     collection = db['items']
 
-    all_items=collection.find({},{'_id':0})
+    all_items=collection.find()
     date_catg_data = list()
     for item in all_items:
+        item['_id']= str(item['_id'])
         if item['date'] == date and item['category'] == catg:
             date_catg_data.append(item)
     client.close()        
     return Response(date_catg_data)         
-
-
-
 
 
 @api_view(['POST'])
@@ -137,16 +104,6 @@ def add_new_item(request):
         f.write(json.dumps(data))
     return Response(new_item)
 
-
-# @api_view(['POST'])
-# def add_item(request):
-#     data = read_data_from_json()
-#     new_item = request.data['item']
-#     data.append(new_item)
-#     with open('overview/static/itemsdata.json', 'w') as f:
-#         f.write(json.dumps(data))
-#     return Response(new_item)
-
 @api_view(['POST'])
 def add_item(request):
     client,db = connect_mongo()
@@ -163,20 +120,19 @@ def add_item(request):
     return Response({'added_item':new_item})
 
 
-
 @api_view(['PATCH'])
 def update_item(request):
 
     client,db = connect_mongo()
     collection = db['items']
+    
+    update_item= request.data.get['update_item']
+    id=update_item['_id']
+    del update_item['_id']
 
-    update_item= request.data['update_item']
-    filter={"_id":str(update_item['_id'])}
-    update = {"$set": update_item}
-    result=collection.update_one(filter,update)
-   # print("update_item=",update_item,"filter=",filter,"update=",update,"result=",result)
+    result=collection.update_one({'_id':ObjectId(id)},{"$set":update_item})
     client.close()
-    return Response(result) 
+    return Response(result.modified_count) 
 
 
 @api_view(['GET']) # Date ke item ka maximum price.
@@ -184,16 +140,18 @@ def date_max_itm_price(request):
     client,db = connect_mongo()
     collection = db['items']
 
-    all_items=collection.find({},{'_id':0})
+    all_items=collection.find()
     max=0
     itm=''
     date= request.GET.get('date')
     for item in all_items:
+        item['_id']= str(item['_id'])
         if item['date']==date and int(item['price'])>max:
             max=int(item['price'])
             itm=item['item']
+            category=item['category']
     client.close()        
-    return Response({'item':itm,'Maximum_Price':max})
+    return Response({category:{'item':itm,'Maximum_Price':max}})
 
 
 @api_view(['GET']) #Count item and price
@@ -201,9 +159,10 @@ def count_itm(request):
     client,db = connect_mongo()
     collection = db['items']
 
-    all_items=collection.find({},{'_id':0})
+    all_items=collection.find()
     count_dict=dict()
     for item in all_items:
+        item['_id']= str(item['_id'])
         if item['item'] in count_dict:
             count_dict[item['item']]['count']+=1
             count_dict[item['item']]['price']+=int(item['price'])
@@ -217,9 +176,10 @@ def cunt_itm_latest_date(request):
     client,db = connect_mongo()
     collection = db['items']
 
-    all_items=collection.find({},{'_id':0})
+    all_items=collection.find()
     latest_date=dict()
     for item in all_items:
+        item['_id']= str(item['_id'])
         if item['item'] in latest_date:
             latest_date[item['item']]['count']+=1
             latest_date[item['item']]['price']+=int(item['price'])
@@ -237,8 +197,9 @@ def latest_date(request):
     client,db = connect_mongo()
     collection = db['items']
 
-    all_items=collection.find({},{'_id':0})
+    all_items=collection.find()
     for item in all_items:
+        item['_id']= str(item['_id'])
         if item['date']<=dt.strftime(dt.today(),'%Y-%m-%d'):
             l_d={item['date']:[{'item':item['item'],'price':item['price']}]}
     client.close()        
@@ -251,9 +212,10 @@ def Particular_date_data(request):
     client,db = connect_mongo()
     collection = db['items']
 
-    all_items=collection.find({},{'_id':0})
+    all_items=collection.find()
     parti_det=dict()
     for item in all_items:
+        item['_id']= str(item['_id'])
         if item['date']==date:
             if item['date'] in parti_det:
                 parti_det[item['date']]['item'].append([item['item']])
@@ -267,3 +229,20 @@ def Particular_date_data(request):
     return Response(parti_det)                                         
 
 
+@api_view(['GET'])
+def filter_catg(request):#filter_catg
+    catg = request.data.get('catg_filter',[])
+    if not catg:
+        return Response({"error": "category data not received"})
+
+    client, db = connect_mongo()
+    collection = db['items']
+    result = {}
+    
+    all_items = collection.find({'category': {'$in': catg}})
+    for item in all_items:
+        item['_id'] = str(item['_id'])
+        result[item['_id']] = item
+        
+    client.close()
+    return Response(result)

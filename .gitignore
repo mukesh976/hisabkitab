@@ -137,4 +137,4 @@ GitHub.sublime-settings
 .history
 
 #  local dev folder
-local_folder/
+/local_folder

@@ -1,46 +1,4 @@
-
-    {
-        "_id": "6398c5fc65839ae7f5f90122",
-        "item": "Vimbar",
-        "category": "daily use",
-        "price": "10",
-        "date": "2022-12-13"
-    },
-    {
-        "_id": "6398c6a4952044a9e7361db6",
-        "item": "Milk",
-        "category": "daily use",
-        "price": "26",
-        "date": "2022-12-13"
-    },
-    {
-        "_id": "63995c13a1966b67442e67c5",
-        "item": "Milk",
-        "category": "rasan",
-        "price": "26",
-        "date": "2022-12-14"
-    },
-    {
-        "_id": "6399b91fbcbddddc9830ce78",
-        "item": "Kaddu",
-        "category": "sabji",
-        "price": "30",
-        "date": "2022-12-13"
-    },
-    {
-        "_id": "6399c9da978b03da2d251707",
-        "item": "Potato",
-        "category": "sabji",
-        "price": "50",
-        "date": "2022-12-14"
-    },
-    {
-        "_id": "6399ca311e52ab545d4d1dcd",
-        "item": "Pani",
-        "category": "daily use",
-        "price": "7",
-        "date": "2022-12-14"
-    },[
+[
     {
         "_id": "6398b26a6bc24c99aab55e3d",
         "item": "Sarso oil",
@@ -1021,5 +979,11 @@
         "category": "",
         "price": "15",
         "date": "2023-01-03"
-    }
+    },//{"update_item":{ "_id": "63b3f3e40009fff98189591b",
+    // "item": "Milk",
+    // "category": "daily use",
+    // "price": "64",
+    // "date": "2023-01-03"
+// }  
+ }
 ]

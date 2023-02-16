@@ -7,6 +7,10 @@ import json
 from datetime import datetime as dt
 from pymongo import MongoClient
 from bson import ObjectId
+import smtplib
+from email.mime.text import MIMEText
+from django.core.mail import send_mail
+
 
 
 # Create your views here.
@@ -68,7 +72,7 @@ def date_wise_data(request):
     for item in all_items:
         item['_id']= str(item['_id'])
         if item['date']==date:
-            date_data.append(item)
+            date_data.append(item)  
     client.close()        
     return Response((date_data))        
 
@@ -106,15 +110,21 @@ def add_new_item(request):
 
 @api_view(['POST'])
 def add_item(request):
+
     client,db = connect_mongo()
     collection = db['items']
 
     new_item = request.data['item']
-    #print(new_item,"before adding to mongo")
-
     collection.insert_one(new_item)
-    #print(new_item,"after adding mongo")
 
+    send_mail(
+        'New Add item', #Subject
+        f":{new_item}",  #body
+        'rachitsingh06938@gmail.com',  #username
+        ['mukeshsingh08082002@gmail.com'], #jis pe mail send karna hai
+        fail_silently=False,
+    )
+    print("send email successfully")
     new_item["_id"]=str(new_item["_id"])
     client.close() 
     return Response({'added_item':new_item})
@@ -126,7 +136,7 @@ def update_item(request):
     client,db = connect_mongo()
     collection = db['items']
     
-    update_item= request.data.get['update_item']
+    update_item= request.data.get('update_item')
     id=update_item['_id']
     del update_item['_id']
 
@@ -172,7 +182,7 @@ def count_itm(request):
     return Response(count_dict)
                                    
 @api_view(['GET']) #Count item_price and latest_date
-def cunt_itm_latest_date(request):
+def cunt_itm_price(request):
     client,db = connect_mongo()
     collection = db['items']
 
@@ -246,3 +256,4 @@ def filter_catg(request):#filter_catg
         
     client.close()
     return Response(result)
+

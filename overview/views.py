@@ -10,6 +10,7 @@ from bson import ObjectId
 import smtplib
 from email.mime.text import MIMEText
 from django.core.mail import send_mail
+from dateutil import parser
 
 
 
@@ -28,20 +29,27 @@ def connect_mongo(db_name='test'):
 
     return client,db
 
-
 @api_view(['GET'])
 def overview(request):
     client,db = connect_mongo()
     collection = db['items']
 
-    all_items=collection.find()
-    data=list()
+    all_items = collection.find()
+    data = []
     for item in all_items:
-        item['_id']= str(item['_id'])
+        
+        date_str = item["date"]
+        # date_obj=dt.strftime(date_str,"%Y-%m-%d") #string formate date
+        date_obj=dt.strptime(date_str,"%Y-%m-%d") #date formate
+        # fomat_date = date_obj.strftime("%d/%m/%Y")
+
+        collection.update_one({"_id": item["_id"]}, {"$set": {"date": date_obj}})
+       
+        item['_id'] = str(item['_id'])
         data.append(item)
 
     client.close()
-    return Response(data)    
+    return Response(data)
 
 
 @api_view(['GET'])
@@ -64,6 +72,7 @@ def category_data(request):
 @api_view(['GET'])
 def date_wise_data(request):
     date = request.GET.get('date')
+    date_obj=dt.strptime(date,"%Y-%m-%d")
     client,db = connect_mongo()
     collection = db['items']
 
@@ -71,7 +80,7 @@ def date_wise_data(request):
     date_data = list()
     for item in all_items:
         item['_id']= str(item['_id'])
-        if item['date']==date:
+        if item['date']==date_obj:
             date_data.append(item)  
     client.close()        
     return Response((date_data))        
@@ -80,6 +89,7 @@ def date_wise_data(request):
 @api_view(['GET'])
 def date_catg_wise_data(request):
     date, catg = request.GET.get('date'), request.GET.get('catg')
+    date_obj=dt.strptime(date,"%Y-%m-%d")
     client,db = connect_mongo()
     collection = db['items']
 
@@ -87,7 +97,7 @@ def date_catg_wise_data(request):
     date_catg_data = list()
     for item in all_items:
         item['_id']= str(item['_id'])
-        if item['date'] == date and item['category'] == catg:
+        if item['date'] == date_obj and item['category'] == catg:
             date_catg_data.append(item)
     client.close()        
     return Response(date_catg_data)         
@@ -154,9 +164,10 @@ def date_max_itm_price(request):
     max=0
     itm=''
     date= request.GET.get('date')
+    date_obj=dt.strptime(date,"%Y-%m-%d")
     for item in all_items:
         item['_id']= str(item['_id'])
-        if item['date']==date and int(item['price'])>max:
+        if item['date']==date_obj and int(item['price'])>max:
             max=int(item['price'])
             itm=item['item']
             category=item['category']
@@ -219,6 +230,7 @@ def latest_date(request):
 @api_view(['GET']) #Particular_date_data
 def Particular_date_data(request):
     date = request.GET.get('date')
+    date_obj=dt.strptime(date,"%Y-%m-%d")
     client,db = connect_mongo()
     collection = db['items']
 
@@ -226,7 +238,7 @@ def Particular_date_data(request):
     parti_det=dict()
     for item in all_items:
         item['_id']= str(item['_id'])
-        if item['date']==date:
+        if item['date']==date_obj:
             if item['date'] in parti_det:
                 parti_det[item['date']]['item'].append([item['item']])
                 parti_det[item['date']]['total_item']+=1
@@ -257,3 +269,11 @@ def filter_catg(request):#filter_catg
     client.close()
     return Response(result)
 
+
+
+
+        
+    
+
+
+    

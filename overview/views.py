@@ -5,12 +5,14 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 import json
 from datetime import datetime as dt
+from datetime import timedelta
 from pymongo import MongoClient
 from bson import ObjectId
 import smtplib
 from email.mime.text import MIMEText
 from django.core.mail import send_mail
 from dateutil import parser
+
 
 
 
@@ -39,7 +41,8 @@ def overview(request):
     for item in all_items:
         
         date_str = item["date"]
-        # date_obj=dt.strftime(date_str,"%Y-%m-%d") #string formate date
+        item['price']=int(item['price'])
+        #date_obj=dt.strftime(date_str,"%Y-%m-%d") #string formate date
         date_obj=dt.strptime(date_str,"%Y-%m-%d") #date formate
         # fomat_date = date_obj.strftime("%d/%m/%Y")
 
@@ -271,9 +274,56 @@ def filter_catg(request):#filter_catg
 
 
 
+#add new database
+def connect_mongo_1(db_name='Multiuserdb'):
+    client=MongoClient("mongodb+srv://12mukesh:mukesh12@cluster0.ho3xvso.mongodb.net/test")
+    db=client[db_name]
 
-        
+    return client,db
+ 
+def update_account_balance(price, bnk,user_data):
+    account_balance =user_data["account"].get(bnk,0) # current account balance for the given bank
+    new_balance = account_balance - price  # calculate the new balance after subtracting the price
+    if new_balance < 0:
+        raise ValueError(f"Insufficient balance in the {bnk} account")
+    user_data["account"][bnk] = new_balance  # update the balance for the given bank
+    return new_balance
+
+
+@api_view(['POST'])
+def add_item_update_price(request):
+    client,db = connect_mongo_1()
+    collection = db['users']
+    data_collection=db['user_data']
+
+
+    new_item = request.data['item']
+    price = int(new_item['price'])
+    new_item['date']=dt.strptime(new_item['date'],"%Y-%m-%d") #date formate
+    bnk=request.data.get("item").get("bank_name")
     
-
-
     
+    user_data=collection.find_one({"email":"mithilesh129@gmail.com"})
+    if user_data is None:
+        raise ValueError("User not Found")
+    update_account_balance(price,bnk,user_data)
+    
+    collection.update_one({"email":"mithilesh129@gmail.com"},{"$set":{"account":user_data["account"]}})
+   
+    status = data_collection.update_one({"_id":'mithilesh1234'},{"$set":{"data.+id_2":new_item}})
+    send_mail(
+        'New Add item', #Subject
+        f"{new_item} Current Account Balance:{user_data}",  #body
+        'rachitsingh06938@gmail.com',  #username
+        ['mukeshsingh08082002@gmail.com'], #jis pe mail send karna hai
+        fail_silently=False,
+    )
+
+    print("send email successfully")
+    client.close()
+    return Response({'added_item':new_item, 'account_balance':user_data["account"]}) 
+
+
+ 
+
+

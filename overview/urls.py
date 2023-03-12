@@ -1,7 +1,7 @@
 from django.urls import path
 
 # from . import views
-from .views import add_item, category_data, date_catg_wise_data,date_wise_data, overview,count_itm,update_item,cunt_itm_price,date_max_itm_price,latest_date,Particular_date_data,filter_catg,add_item_update_price
+from .views import add_item, category_data, date_catg_wise_data,date_wise_data, overview,count_itm,update_item,cunt_itm_price,date_max_itm_price,latest_date,Particular_date_data,filter_catg,add_item_update_balance
 urlpatterns = [
     path('', overview, name='overview'),
     path('category-data/', category_data, name='category-data'),
@@ -15,7 +15,6 @@ urlpatterns = [
     path('lat-dat/',latest_date,name='latest-date'),
     path('partic-det-data/',Particular_date_data,name='Particular-date-data'),
     path('filter-catg/',filter_catg,name='filter-catg'),
-    path('add-item-update-price/',add_item_update_price,name='add-item-update-price')
-
+    path('add-item-update-balance/',add_item_update_balance,name='add_item_update_balance')
 
 ]

@@ -12,7 +12,13 @@ import smtplib
 from email.mime.text import MIMEText
 from django.core.mail import send_mail
 from dateutil import parser
-
+#new
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import CustomerSerializer
+from .models import Customer
+from django.contrib.auth.models import User
 
 
 
@@ -44,10 +50,7 @@ def overview(request):
         item['price']=int(item['price'])
         #date_obj=dt.strftime(date_str,"%Y-%m-%d") #string formate date
         date_obj=dt.strptime(date_str,"%Y-%m-%d") #date formate
-        # fomat_date = date_obj.strftime("%d/%m/%Y")
-
         collection.update_one({"_id": item["_id"]}, {"$set": {"date": date_obj}})
-       
         item['_id'] = str(item['_id'])
         data.append(item)
 
@@ -121,7 +124,7 @@ def add_new_item(request):
         f.write(json.dumps(data))
     return Response(new_item)
 
-@api_view(['POST'])
+@api_view(['POST']) #Sending Email Add item
 def add_item(request):
 
     client,db = connect_mongo()
@@ -280,37 +283,38 @@ def connect_mongo_1(db_name='Multiuserdb'):
     db=client[db_name]
 
     return client,db
+
+counter=0
+def generate_id():
+    global counter
+    counter+=1
+    return "id_"+str(counter)
  
 def update_account_balance(price, bnk,user_data):
     account_balance =user_data["account"].get(bnk,0) # current account balance for the given bank
     new_balance = account_balance - price  # calculate the new balance after subtracting the price
-    if new_balance < 0:
-        raise ValueError(f"Insufficient balance in the {bnk} account")
     user_data["account"][bnk] = new_balance  # update the balance for the given bank
     return new_balance
 
-
 @api_view(['POST'])
-def add_item_update_price(request):
+def add_item_update_balance(request):
     client,db = connect_mongo_1()
     collection = db['users']
     data_collection=db['user_data']
-
 
     new_item = request.data['item']
     price = int(new_item['price'])
     new_item['date']=dt.strptime(new_item['date'],"%Y-%m-%d") #date formate
     bnk=request.data.get("item").get("bank_name")
-    
-    
+     
     user_data=collection.find_one({"email":"mithilesh129@gmail.com"})
-    if user_data is None:
-        raise ValueError("User not Found")
     update_account_balance(price,bnk,user_data)
     
-    collection.update_one({"email":"mithilesh129@gmail.com"},{"$set":{"account":user_data["account"]}})
-   
-    status = data_collection.update_one({"_id":'mithilesh1234'},{"$set":{"data.+id_2":new_item}})
+    #collection.update_one({"email":"mithilesh129@gmail.com"},{"$set":{"account":user_data["account"]}})
+    collection.update_one({"email":"mithilesh129@gmail.com"},{"$inc":{f"account.{bnk}":-price}})
+
+    new_id=generate_id()
+    status = data_collection.update_one({"_id":'mithilesh1234'},{"$set":{"data."+new_id:new_item}})
     send_mail(
         'New Add item', #Subject
         f"{new_item} Current Account Balance:{user_data}",  #body
@@ -318,12 +322,7 @@ def add_item_update_price(request):
         ['mukeshsingh08082002@gmail.com'], #jis pe mail send karna hai
         fail_silently=False,
     )
-
     print("send email successfully")
     client.close()
     return Response({'added_item':new_item, 'account_balance':user_data["account"]}) 
-
-
- 
-
 

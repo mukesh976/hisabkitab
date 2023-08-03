@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+<table class="table table-dark table-striped">
+    <tbody>
+      {% for data in date_data %}
+      <tr>
+        <th scope="row">1</th>
+        <td>{{ data.item }}</td>
+        <td>{{ data.category }}</td>
+        <td>{{data.price}}</td>
+        <td>{{data.date}}</td>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+</table>
+
+
+<table class="table table-success table-striped-columns">
+    <thead>
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">Item</th>
+          <th scope="col">Category</th>
+          <th scope="col">Price</th>
+          <th scope="col">Date</th>
+        </tr>
+      </thead>
+    <tbody>
+      {% for data in catg_data %}
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{ data.item }}</td>
+        <td>{{ data.category }}</td>
+        <td>{{data.price}}</td>
+        <td>{{data.date}}</td>
+      </tr>
+      {% endfor %}
+  
+    </tbody>
+</table>
+
+<table class="table table-success table-striped-columns">
+  <thead>
+      <tr>
+        <th scope="col">No</th>
+        <th scope="col">Item</th>
+        <th scope="col">Category</th>
+        <th scope="col">Price</th>
+        <th scope="col">Date</th>
+      </tr>
+    </thead>
+  <tbody>
+    {% for data in date_catg_data %}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{ data.item }}</td>
+      <td>{{ data.category }}</td>
+      <td>{{data.price}}</td>
+      <td>{{data.date}}</td>
+    </tr>
+    {% endfor %}
+{% endblock %}

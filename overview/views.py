@@ -12,14 +12,6 @@ import smtplib
 from email.mime.text import MIMEText
 from django.core.mail import send_mail
 from dateutil import parser
-#new
-from rest_framework import status
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from .serializers import CustomerSerializer
-from .models import Customer
-from django.contrib.auth.models import User
-
 
 
 # Create your views here.
@@ -197,7 +189,9 @@ def count_itm(request):
             count_dict[item['item']]={'count':1,'price':int(item['price'])}
     client.close()             
     return Response(count_dict)
-                                   
+   
+   
+   #correct karo                                
 @api_view(['GET']) #Count item_price and latest_date
 def cunt_itm_price(request):
     client,db = connect_mongo()
@@ -210,11 +204,15 @@ def cunt_itm_price(request):
         if item['item'] in latest_date:
             latest_date[item['item']]['count']+=1
             latest_date[item['item']]['price']+=int(item['price'])
-            latest_date[item['item']]['date']=max(dt.strptime(latest_date[item['item']]['date'],'%Y-%m-%d'),
-                                                   dt.strptime(item['date'],'%Y-%m-%d')).strftime('%Y-%m-%d')
+            latest_date[item['item']]['date']=max(dt.strptime(latest_date[item['item']]['date'],'%Y-%m-%d %H:%M:%S'),
+                                                #    dt.strptime(str(item['date'])+ ' '+'%Y-%m-%d ')).strftime('%Y-%m-%d')
+                                                    dt.strptime(str(item['date']) + ' ' + item['time'], '%Y-%m-%d %H:%M:%S')).strftime('%Y-%m-%d')
+
         else:
-            latest_date[item['item']]={'count':1,'price':int(item['price']),
-                                        'date':item['date']}
+            # latest_date[item['item']]={'count':1,'price':int(item['price']),
+                                        # 'date':str(item['date'])}
+            latest_date[item['item']] = {'count': 1, 'price': int(item['price']),
+                                          'date': str(item['date']) + ' ' + item['time']}                            
     client.close()                                    
     return Response(latest_date)                                                                               
 
@@ -227,8 +225,10 @@ def latest_date(request):
     all_items=collection.find()
     for item in all_items:
         item['_id']= str(item['_id'])
-        if item['date']<=dt.strftime(dt.today(),'%Y-%m-%d'):
-            l_d={item['date']:[{'item':item['item'],'price':item['price']}]}
+        if dt.strptime(item['date'].strftime('%Y-%m-%d'), '%Y-%m-%d') <= dt.today():
+
+                l_d={item['date'].strftime('%Y-%m-%d'):[{'item':item['item'],'price':item['price']}]}
+
     client.close()        
     return Response(l_d)
                                       
@@ -245,12 +245,13 @@ def Particular_date_data(request):
     for item in all_items:
         item['_id']= str(item['_id'])
         if item['date']==date_obj:
-            if item['date'] in parti_det:
-                parti_det[item['date']]['item'].append([item['item']])
-                parti_det[item['date']]['total_item']+=1
-                parti_det[item['date']]['total_price']+=int(item['price'])
+            # if item['date'] in parti_det:
+            if item['date'].strftime('%Y-%m-%d') in parti_det:
+                parti_det[item['date'].strftime('%Y-%m-%d')]['item'].append([item['item']])
+                parti_det[item['date'].strftime('%Y-%m-%d')]['total_item']+=1
+                parti_det[item['date'].strftime('%Y-%m-%d')]['total_price']+=int(item['price'])
             else:
-                parti_det[item['date']]={'total_item':1,
+                parti_det[item['date'].strftime('%Y-%m-%d')]={'total_item':1,
                                           'total_price':int(item['price']),
                                          'item':[item['item']],}
     client.close()                                     
